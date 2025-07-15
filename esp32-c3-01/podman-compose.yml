@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  esp32-dev:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: esp32-c3-dev
+    hostname: esp32-c3-dev
+    ports:
+      - "2222:22"    # SSH access
+      - "8080:8080"  # Web server (future use)
+    volumes:
+      - .:/workspace:Z
+      - esp32-cargo-cache:/home/developer/.cargo
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0  # ESP32 device (adjust as needed)
+      - /dev/ttyACM0:/dev/ttyACM0  # Alternative ESP32 device
+    privileged: true
+    restart: unless-stopped
+    environment:
+      - ESP_LOG=info
+      - RUST_LOG=info
+    tty: true
+    stdin_open: true
+
+volumes:
+  esp32-cargo-cache:
+    driver: local

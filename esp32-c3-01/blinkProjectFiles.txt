@@ -1,0 +1,95 @@
+### file: Cargo.toml -----------------------------------------------------------
+
+[package]
+name = "blinky"
+version = "0.1.0"
+authors = ["Sergio Gasquez <sergio.gasquez@gmail.com>"]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+esp-hal = { version = "0.23.1", features = ["esp32c3"] }
+esp-println = { version = "0.13.0", features = ["esp32c3"] }
+esp-backtrace = { version = "0.15.0", features = [
+    "esp32c3",
+    "panic-handler",
+    "exception-handler",
+    "println",
+] }
+
+
+### file: build.rs -------------------------------------------------------------
+
+fn main() {
+    println!("cargo:rustc-link-arg-bins=-Tlinkall.x");
+}
+
+
+
+### file: rust-toolchain.toml --------------------------------------------------
+
+[toolchain]
+channel = "stable"
+components = ["rust-src"]
+targets = ["riscv32imc-unknown-none-elf"]
+
+
+### file: .cargo/config.toml ---------------------------------------------------
+
+[target.riscv32imc-unknown-none-elf]
+runner = "espflash flash --monitor"
+
+[env]
+ESP_LOG="info"
+
+[build]
+rustflags = [
+  # Required to obtain backtraces (e.g. when using the "esp-backtrace" crate.)
+  # NOTE: May negatively impact performance of produced code
+  "-C", "force-frame-pointers",
+]
+
+target = "riscv32imc-unknown-none-elf"
+
+[unstable]
+build-std = ["core"]
+
+
+
+### file: src/main.rs ----------------------------------------------------------
+
+#![no_std]
+#![no_main]
+
+use esp_backtrace as _;
+use esp_println::println;
+use esp_hal::{
+    delay::Delay,
+    gpio::{Level, Output},
+    main,
+};
+
+#[main]
+fn main() -> ! {
+    let peripherals = esp_hal::init(esp_hal::Config::default());
+
+    println!("esp32-c3 is booting!");
+
+    // Set GPIO7 as an output, and set its state high initially.
+    let mut led = Output::new(peripherals.GPIO8, Level::Low);
+
+    led.set_high();
+
+    // Initialize the Delay peripheral, and use it to toggle the LED state in a loop.
+    let delay = Delay::new();
+
+    loop {
+        led.toggle();
+        delay.delay_millis(500);
+        println!("status: {:?}", led.output_level());
+    }
+}
+
+
+
+

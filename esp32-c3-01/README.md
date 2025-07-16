@@ -48,21 +48,39 @@ cargo run
 ```
 esp32-c3-01/
 ├── src/
-│   └── main.rs          # Código principal
+│   ├── main.rs          # Código principal
+│   ├── config.rs        # Configurações centralizadas
+│   └── wifi.rs          # Módulo WiFi
+├── docs/                # Documentação
+│   ├── prd.md           # Especificações do produto
+│   ├── tasks.md         # Acompanhamento do progresso
+│   ├── WIFI_CONFIG.md   # Configuração WiFi
+│   └── vscode-setup.md  # Configuração VSCode
 ├── .cargo/
 │   └── config.toml      # Configurações Rust
+├── .vscode/             # Configurações VSCode
 ├── Cargo.toml           # Dependências
 ├── Dockerfile           # Container de desenvolvimento
 ├── podman-compose.yml   # Orchestração
 ├── rust-toolchain.toml  # Toolchain Rust
-└── README.md           # Este arquivo
+├── build-bin.sh         # Script para gerar .bin
+├── CLAUDE.md            # Contexto para Claude
+└── README.md            # Este arquivo
 ```
 
 ## Etapas do Projeto
 
 1. ✅ Configuração inicial e teste blink
 2. 🔄 Implementação de contador 8-bit
-3. 🔄 Conexão WiFi
+3. ✅ Conexão WiFi
 4. 🔄 Cliente MQTT
 5. 🔄 Barra de LEDs
 6. 🔄 Funcionalidades adicionais
+
+## Documentação
+
+- **[Especificações do Produto](docs/prd.md)** - Requisitos e arquitetura completa
+- **[Progresso do Projeto](docs/tasks.md)** - Acompanhamento detalhado das tarefas
+- **[Configuração WiFi](docs/WIFI_CONFIG.md)** - Guia de configuração e troubleshooting
+- **[Configuração VSCode](docs/vscode-setup.md)** - Setup do ambiente de desenvolvimento
+- **[Contexto Claude](CLAUDE.md)** - Informações para desenvolvimento com Claude

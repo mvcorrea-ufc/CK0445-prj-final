@@ -26,19 +26,19 @@
 - [ ] Integrar barra de LEDs ao contador
 - [ ] Testar visualização dos valores
 
-## Fase 3: Conectividade WiFi 🔄
+## Fase 3: Conectividade WiFi ✅
 
 ### 3.1 Configuração WiFi
-- [ ] Adicionar dependência esp-wifi ao Cargo.toml
-- [ ] Criar módulo wifi.rs
-- [ ] Implementar conexão ao access point
-- [ ] Adicionar tratamento de reconexão
-- [ ] Testar estabilidade da conexão
+- [x] Adicionar dependência esp-wifi ao Cargo.toml
+- [x] Criar módulo wifi.rs
+- [x] Implementar conexão ao access point
+- [x] Adicionar tratamento de reconexão
+- [x] Testar estabilidade da conexão
 
 ### 3.2 Configuração de Rede
 - [ ] Implementar configuração estática de IP (opcional)
-- [ ] Adicionar monitoramento de status da conexão
-- [ ] Implementar indicadores visuais de conectividade
+- [x] Adicionar monitoramento de status da conexão
+- [x] Implementar indicadores visuais de conectividade
 
 ## Fase 4: Cliente MQTT 🔄
 

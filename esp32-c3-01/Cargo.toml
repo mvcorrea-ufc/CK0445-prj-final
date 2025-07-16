@@ -14,3 +14,15 @@ esp-backtrace = { version = "0.15.0", features = [
     "exception-handler",
     "println",
 ] }
+esp-wifi = { version = "0.11.0", features = ["esp32c3"] }
+smoltcp = { version = "0.11.0", default-features = false, features = [
+    "medium-ethernet",
+    "proto-dhcpv4",
+    "proto-ipv4",
+    "proto-ipv6",
+    "socket-dhcpv4",
+    "socket-icmp",
+    "socket-raw",
+    "socket-tcp",
+    "socket-udp",
+] }

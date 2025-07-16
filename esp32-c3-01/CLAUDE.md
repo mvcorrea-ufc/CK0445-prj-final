@@ -55,17 +55,19 @@ podman-compose down
 
 ## Arquitetura Modular Planejada
 
+### Módulos Implementados
+- `config.rs` - Configurações centralizadas do sistema
+- `wifi.rs` - Gestão de conexão WiFi com reconexão automática
+
 ### Módulos Futuros
 - `counter.rs` - Contador 8-bit com overflow automático
-- `wifi.rs` - Gestão de conexão WiFi
 - `mqtt.rs` - Cliente MQTT para comunicação
 - `led_bar.rs` - Controle de 8 LEDs para visualização binária
-- `config.rs` - Configurações do sistema
 
 ### Fluxo de Desenvolvimento
 1. **Fase 1**: ✅ Configuração inicial e blink
 2. **Fase 2**: 🔄 Contador 8-bit com LEDs
-3. **Fase 3**: 🔄 Conectividade WiFi
+3. **Fase 3**: ✅ Conectividade WiFi
 4. **Fase 4**: 🔄 Cliente MQTT
 5. **Fase 5**: 🔄 Controle remoto via MQTT
 6. **Fase 6**: 🔄 Otimizações e melhorias
@@ -78,6 +80,8 @@ podman-compose down
 esp-hal = { version = "0.23.1", features = ["esp32c3"] }
 esp-println = { version = "0.13.0", features = ["esp32c3"] }
 esp-backtrace = { version = "0.15.0", features = ["esp32c3", "panic-handler", "exception-handler", "println"] }
+esp-wifi = { version = "0.11.0", features = ["esp32c3"] }
+smoltcp = { version = "0.11.0", default-features = false, features = ["medium-ethernet", "proto-dhcpv4", "proto-ipv4", "proto-ipv6", "socket-dhcpv4", "socket-icmp", "socket-raw", "socket-tcp", "socket-udp"] }
 ```
 
 ### Target e Toolchain

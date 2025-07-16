@@ -52,13 +52,15 @@ RUN rustup install stable && \
 # Instalar espflash para programação do ESP32
 RUN cargo install espflash
 
-# Voltar para root para instalar Python tools
+# Voltar para root para instalar Python tools e configurar workspace
 USER root
 RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install esptool
 
-# Criar diretório de trabalho
+# Criar diretório de trabalho com permissões corretas
 RUN mkdir -p /workspace && chown developer:developer /workspace
+
+# Mudar para usuário developer e definir workspace
 USER developer
 WORKDIR /workspace
 

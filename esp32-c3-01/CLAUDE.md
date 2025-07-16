@@ -96,10 +96,10 @@ cargo build
 cargo build --release
 
 # Compilar release + gerar .bin
-cargo build-bin
+./build-bin.sh
 
 # Compilar debug + gerar .bin
-cargo build-bin-debug
+./build-bin.sh debug
 
 # Verificar código
 cargo check
@@ -184,7 +184,7 @@ espflash monitor /dev/ttyUSB0
 cargo build
 
 # Para gerar .bin file
-cargo build-bin
+./build-bin.sh
 
 # Para flash no dispositivo
 cargo run

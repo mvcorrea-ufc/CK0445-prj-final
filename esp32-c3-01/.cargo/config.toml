@@ -15,3 +15,7 @@ target = "riscv32imc-unknown-none-elf"
 
 [unstable]
 build-std = ["core"]
+
+[alias]
+build-bin = "!f() { cargo build --release && esptool.py --chip esp32c3 elf2image --flash-mode dio --flash-freq 80m target/riscv32imc-unknown-none-elf/release/esp32-c3-mqtt-counter; }; f"
+build-bin-debug = "!f() { cargo build && esptool.py --chip esp32c3 elf2image --flash-mode dio --flash-freq 80m target/riscv32imc-unknown-none-elf/debug/esp32-c3-mqtt-counter; }; f"

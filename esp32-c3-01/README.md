@@ -33,6 +33,12 @@ podman-compose exec esp32-dev bash
 # Compilar
 cargo build
 
+# Compilar release + gerar .bin
+cargo build-bin
+
+# Compilar debug + gerar .bin
+cargo build-bin-debug
+
 # Flash no dispositivo
 cargo run
 ```

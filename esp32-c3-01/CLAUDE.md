@@ -95,6 +95,12 @@ cargo build
 # Compilar com otimizações
 cargo build --release
 
+# Compilar release + gerar .bin
+cargo build-bin
+
+# Compilar debug + gerar .bin
+cargo build-bin-debug
+
 # Verificar código
 cargo check
 
@@ -176,6 +182,9 @@ espflash monitor /dev/ttyUSB0
 ```bash
 # Para testar build
 cargo build
+
+# Para gerar .bin file
+cargo build-bin
 
 # Para flash no dispositivo
 cargo run
